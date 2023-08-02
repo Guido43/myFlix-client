@@ -1,12 +1,18 @@
-import { createRoot } from "react-dom/client";
-import { MainView } from "./components/main-view/main-view";
-
-import "./index.scss";
-
-const App = () => {
-  return <MainView />;
+export const MovieView = ({ movie, onBackClick }) => {
+  return (
+    <div>
+      <div>
+        <img src={movie.image} />
+      </div>
+      <div>
+        <span>Title: </span>
+        <span>{movie.title}</span>
+      </div>
+      <div>
+        <span>Author: </span>
+        <span>{movie.director}</span>
+      </div>
+      <button onClick={onBackClick}>Back</button>
+    </div>
+  );
 };
-
-const container = document.querySelector("#root");
-const root = createRoot(container);
-root.render(<App />);
