@@ -8,23 +8,34 @@ export const MovieView = ({ movie, onBackClick }) => {
       </div>
       <div>
         <span>Title: </span>
-        <span>{movie.title}</span>
+        <span>{movie.Title}</span>
       </div>
       <div>
-        <span>Director: </span>
-        <span>{movie.director}</span>
+        <span>Image: </span>
+        <span>{movie.ImagePath}</span>
       </div>
+        <span>Description: </span>
+        <span>{movie.Description}</span>
+      <div>
+        <span>Director: </span>
+        <span>{movie.Director.Name}</span>
+      </div>
+      <div>
+        <span>Genre: </span>
+        <span>{movie.Genre.Name}</span>
+      </div>
+      
       <button onClick={onBackClick}>Back</button>
     </div>
   );
 };
 MovieView.propTypes = {
   movie: PropTypes.shape({
-    image: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    genre: PropTypes.string,
-    director: PropTypes.string.isRequired, 
-    onBackClick: PropTypes.func.isRequired,
+    ImagePath: PropTypes.string,
+    Title: PropTypes.string,
+    Description: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({Name: PropTypes.string}),
+    Director: PropTypes.shape({Name: PropTypes.string}), 
+    onBackClick: PropTypes.func
   }),
 }
