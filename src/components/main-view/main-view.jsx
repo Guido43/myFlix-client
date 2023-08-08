@@ -14,12 +14,20 @@ export const MainView = () => {
       .then((data) => {
         const moviesFromApi = data.docs.map((doc) => {
           return {
-            id: doc.key,
-            title: doc.title,
-            image: `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`,
-            director: doc.director_name?.[0]
-          };
-        });
+            id: movie._id,
+            title: movie.Title,
+            image: src,
+            director: {
+                        name: movie.director.Name,
+                        bio: movie.director.Bio,},
+            genre: {
+                      name: movie.genre.Name,
+                      description: movie.genre.Description,
+            },
+          }
+        },
+        )    
+        
         
         setMovies(moviesFromApi);
       });
