@@ -1,32 +1,27 @@
 import { useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { useState } from "react";
 
 export const MainView = () => {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      title: "Silence of the Lambs",
-      image:
-        "https://www.alamy.com/the-silence-of-the-lambs-a-1991-american-thriller-film-starring-jodie-image69821205.html",
-      director: "Jonathan Demme"
-    },
-    {
-      id: 2,
-      title: "Robin Hood, Prince of thieves",
-      image:
-        "https://www.alamy.com/kevin-costner-robin-hood-prince-of-thieves-1991-image475152713.html",
-      director: "Kevin Reynolds"
-    },
-    {
-      id: 3,
-      title: "The Mask",
-      image:"https://favpng.com/png_view/rap-stanley-ipkiss-film-the-mask-actor-new-line-cinema-png/xhaCfBmL",
-      director: "Charles Russell"
-    },
-  ]);
+  const [movies, setMovies] = useState([]);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
+  useEffect(() => {
+    fetch("https://guysflix-d8285acb1f18.herokuapp.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.docs.map((doc) => {
+          return {
+            id: doc.key,
+            title: doc.title,
+            image: `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`,
+            director: doc.director_name?.[0]
+          };
+        });
+        setMovies(moviesFromApi);
+      });
+  }, []);
 
   if (selectedMovie) {
     return (
