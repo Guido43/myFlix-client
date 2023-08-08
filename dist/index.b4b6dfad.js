@@ -27175,7 +27175,7 @@ const MainView = ()=>{
     _s();
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    useEffect(()=>{
+    (0, _react.useEffect)(()=>{
         fetch("https://guysflix-d8285acb1f18.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.docs.map((doc)=>{
                 return {
