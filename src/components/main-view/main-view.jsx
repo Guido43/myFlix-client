@@ -11,12 +11,15 @@ export const MainView = () => {
     fetch("https://guysflix-d8285acb1f18.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.docs.map((doc) => {
+        console.log(data)
+        const moviesFromApi = data.map((movie) => {
           return {
-            id: doc.key,
-            title: doc.title,
-            image: `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`,
-            director: doc.director_name?.[0]
+            _id: movie.id,
+            Title: movie.Title,
+            ImagePath: movie.ImagePath,
+            Description: movie.Description,
+            Director: {Name: movie.Director.Name},
+            Genre: {Name: movie.Genre.Name},
           };
         });
         setMovies(moviesFromApi);
