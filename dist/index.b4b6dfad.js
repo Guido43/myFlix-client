@@ -28499,7 +28499,7 @@ const LoginView = ({ onLoggedIn })=>{
             username: username,
             password: password
         };
-        fetch("https://guysflix-d8285acb1f18.herokuapp.com/login", {
+        fetch("https://guysflix-d8285acb1f18.herokuapp.com/users/login", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

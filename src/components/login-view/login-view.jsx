@@ -14,7 +14,7 @@ export const LoginView = ({ onLoggedIn }) => {
           password: password
         };
                     
-      fetch("https://guysflix-d8285acb1f18.herokuapp.com/login",
+      fetch("https://guysflix-d8285acb1f18.herokuapp.com/users/login",
       {method: "POST",
       headers: {"content-type":"application/json"
     },
