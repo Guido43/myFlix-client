@@ -29,7 +29,7 @@ export const MainView = () => {
           return {
             _id: movie.id,
             Title: movie.Title,
-            ImagePath: movie.ImagePath,
+            imagePath: movie.imagePath,
             Description: movie.Description,
             Director: {Name: movie.Director.Name},
             Genre: {Name: movie.Genre.Name},
