@@ -10,9 +10,9 @@ export const MovieCard = ({ movie, onMovieClick }) => {
     >
       <div>
       {movie.Title}</div>
-      <div>
-      <span>
-      {movie.ImagePath}</span></div>
+   
+    
+        
 
     </div>
   );
