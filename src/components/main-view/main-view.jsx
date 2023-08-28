@@ -4,7 +4,10 @@ import { MovieView } from "../movie-view/movie-view";
 import { useEffect } from "react";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-import PropTypes from 'prop-types';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import PropTypes from 'prop-types'
+
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -39,9 +42,12 @@ export const MainView = () => {
       });
   }, [token]);
 
-  if (!user)
-  {return (
-    <>
+  
+  return (
+    <Row className="justify-content-md-center">
+      {!user ? (
+      
+        <Col md={5}>
     <LoginView 
               onLoggedIn = {(user, token) => {
                 setUser(user);
@@ -50,15 +56,30 @@ export const MainView = () => {
             />
             or
             
-            <SignupView />
-            </>
-          );
-        }      
+            <SignupView /></Col>
+          
+          ) : selectedMovie ? (
+            <Col md={8} style={{border: "1px black solid"}}>
+              <MovieView
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
+              /></Col>
+          ) : movies.length === 0 ? (
+            <div>The list is Empty</div>
+          ) : (
+            <> 
+            {movies.map((movie) => (
+              <Col className="mb-5" key={movie.id} md={3}>
 
-  if (selectedMovie) {
-    return (
-      <div>
-      <button
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovie(newSelectedMovie);
+          }} />
+          </Col>
+            ))} 
+    <button className="w-50"
       onClick={() => {
         setUser(null);
         setToken(null);
@@ -67,51 +88,72 @@ export const MainView = () => {
     >
       Logout
     </button>
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
-      </div>
-    );
-  }
-  
-  if (movies.length === 0) {
-    return (
-      <>
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-        >
-          Logout
-        </button>
-        <div>The list is empty!</div>
-      </>
-    );
-  }
-
-  return (
-    <div>
-      <button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      >
-        Logout
-      </button>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie);
-          }}
-        />
-      ))}
-    </div>
+          </>
+        )}
+      </Row>
   );
-};
+    };
+        
+        
+      
+
+  //if (selectedMovie) {
+    //return (
+      //<div>
+     //<button
+      //onClick={() => {
+        //setUser(null);
+        //setToken(null);
+        //localStorage.clear();
+      //}}
+    //>
+      //Logout
+    //</button>
+      //<MovieView
+        //movie={selectedMovie}
+        //onBackClick={() => setSelectedMovie(null)}
+      //>
+      //</div>
+    //);
+  //}
+  
+  //if (movies.length === 0) {
+    //return (
+      //<>
+        //<button
+          //onClick={() => {
+            //setUser(null);
+            //setToken(null);
+            //localStorage.clear();
+          //}}
+        //>
+          //Logout
+        //</button>
+        //<div>The list is empty!</div>
+      //</>
+    //);
+  //}
+
+  //return (
+    //<div>
+      //<button
+        //onClick={() => {
+          //setUser(null);
+          //setToken(null);
+          //localStorage.clear();
+        //}}
+     // >
+       // Logout
+      //</button>
+      //{movies.map((movie) => (
+        //<MovieCard
+          //key={movie.id}
+         // movie={movie}
+          //onMovieClick={(newSelectedMovie) => {
+            //setSelectedMovie(newSelectedMovie);
+          //}}
+        //>
+      //))}
+    //</div>
+  //);
+//};
