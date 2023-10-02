@@ -1,12 +1,85 @@
+import { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
-import "./movie-view.scss"
+import { Link, useLocation } from "react-router-dom";
+import { useParams } from "react-router";
+import "./movie-view.scss";
 
-export const MovieView = ({ movie, onBackClick }) => {
+
+export const MovieView = ({ movies, setUser, user, token }) => {
+  //console.log("userParams is", useParams());
+  const {movieview: movieId} = useParams();
+  
+  console.log("user is", user);
+  const [isFavorite, setIsFavorite] = useState(user.favoritemovies.includes(movieId));
+
+  //useEffect(() => {
+    //const isFavoriteMovie = user.favoritemovies.includes(movie._id)
+    //setIsFavorite(isFavoriteMovie)
+  //}, []);
+
+  
+  const addFavoriteMovie = () => {
+    fetch(`https://guysflix-d8285acb1f18.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {alert ('Failed');
+        return false;
+      }
+    }).then((user) => {
+      if (user) {
+        alert('Movie added to favorites');
+      localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+      setIsFavorite(true);
+      }
+    })
+  };
+
+
+  const removeFavoriteMovie = () => {
+    fetch(`https://guysflix-d8285acb1f18.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        alert('Failed');
+        return false;
+      }
+    })
+      .then((user) => {
+        if (user) {
+          alert('Movie deleted from favorites');
+      localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+      setIsFavorite(false);
+        }
+    })
+    .catch((e) => {
+      alert(e);
+    });
+  };
+
+
+  console.log("movies is", movies);
+  console.log("movieId is", movieId);
+  const movie = movies.find((m) => m._id === movieId)
+  console.log(movie);
+  console.log(setIsFavorite);
+  
   return (
     <div>
-      <div>
-        <img src={movie.image} />
-      </div>
       <div>
         <span>Title: </span>
         <span>{movie.Title}</span>
@@ -28,7 +101,18 @@ export const MovieView = ({ movie, onBackClick }) => {
           <span>Genre: </span>
           <span>{movie.Genre.Name}</span>
       </div>
-      <button onClick={onBackClick} className="back-button" style={{cursor: "pointer"}}>Back</button>
+
+      {isFavorite ? (
+                <Button onClick={removeFavoriteMovie}>Remove from favorites</Button>
+            ) : (
+                <Button onClick={addFavoriteMovie}>Add to favorites</Button>
+            )}
+
+
+
+      <Link to={"/"}>
+      <button  type="link" className="back-button" style={{cursor: "pointer"}}>Back</button>
+      </Link>
     </div>
   );
 };
@@ -43,6 +127,6 @@ MovieView.PropTypes = {
     Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired
     }).isRequired,
-    onBackClick: PropTypes.func.isRequired
+    //onBackClick: PropTypes.func.isRequired
   })
 }
