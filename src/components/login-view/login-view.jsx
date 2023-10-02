@@ -5,8 +5,8 @@ import Form from "react-bootstrap/Form";
 
 
 export const LoginView = ({ onLoggedIn }) => {
-       const [username, setUsername] = useState("");
-       const [password, setPassword] = useState("");
+       const [username, setUsername] = useState('');
+       const [password, setPassword] = useState('');
 
        const handleSubmit = (event) => {
         event.preventDefault();
@@ -16,7 +16,7 @@ export const LoginView = ({ onLoggedIn }) => {
           Password: password
         };
                     
-      fetch("https://guysflix-d8285acb1f18.herokuapp.com/users/login",
+      fetch("https://guysflix-d8285acb1f18.herokuapp.com/login",
       {method: "POST",
       headers: {"content-type":"application/json"
     },
