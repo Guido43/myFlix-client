@@ -1,3 +1,13 @@
+.h-100 {
+  justify-content: flex-start;
+  max-width: 300px;
+  padding-top: 10px;
+}
+
+.movie-image {
+  padding-top: 10px;
+}
+
 .back-button {
   color: #f5f5f5;
   background-color: #1e90ff;
@@ -6,8 +16,37 @@
   padding: 4px 12px;
 }
 
+.form-header {
+  padding-top: 1px;
+}
+
 .form-group-entry {
   padding-top: 4px;
+}
+
+.profile-update {
+  padding-top: 10px;
+}
+
+.mb-5 {
+  padding-top: 1px;
+}
+
+.mr-sm-2 {
+  padding: 1px;
+}
+
+.me-auto {
+  padding-top: 2px;
+}
+
+.cards-container {
+  padding: 64px 32px;
+}
+
+.mb-3 {
+  max-width: 10px;
+  padding-top: 40px;
 }
 
 :root {
@@ -406,7 +445,31 @@ legend + * {
   clear: left;
 }
 
-:is(::-webkit-datetime-edit-fields-wrapper, ::-webkit-datetime-edit-text, ::-webkit-datetime-edit-minute, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-year-field) {
+::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+::-webkit-datetime-edit-text {
+  padding: 0;
+}
+
+::-webkit-datetime-edit-minute {
+  padding: 0;
+}
+
+::-webkit-datetime-edit-hour-field {
+  padding: 0;
+}
+
+::-webkit-datetime-edit-day-field {
+  padding: 0;
+}
+
+::-webkit-datetime-edit-month-field {
+  padding: 0;
+}
+
+::-webkit-datetime-edit-year-field {
   padding: 0;
 }
 
@@ -2631,12 +2694,12 @@ textarea.form-control-lg {
   padding-bottom: .625rem;
 }
 
-.form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-control-plaintext ~ label, .form-floating > .form-select ~ label, .form-floating > .form-control:-webkit-autofill ~ label {
+.form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-control-plaintext ~ label, .form-floating > .form-select ~ label {
   opacity: .65;
   transform: scale(.85)translateY(-.5rem)translateX(.15rem);
 }
 
-.form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-control-plaintext ~ label, .form-floating > .form-select ~ label, .form-floating > .form-control:autofill ~ label {
+.form-floating > .form-control:-webkit-autofill ~ label {
   opacity: .65;
   transform: scale(.85)translateY(-.5rem)translateX(.15rem);
 }
@@ -12003,4 +12066,4 @@ textarea.form-control-lg {
   }
 }
 
-/*# sourceMappingURL=index.5f1df611.css.map */
+/*# sourceMappingURL=index.e3f97e84.css.map */
