@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
 import { MovieCard } from "../movie-card/movie-card";
 import { Modal } from "react-bootstrap";
+import "./profile-view.scss"
 
 export const ProfileView = ({ user, token, setUser, movies, onLogout }) => {
     const [username, setUsername] = useState(user.Username);
@@ -85,7 +86,7 @@ export const ProfileView = ({ user, token, setUser, movies, onLogout }) => {
         <Row>
             <h2>Update your profile information here.</h2>
             <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formUsername">
+                <Form.Group className="profile-update" controlId="formUsername">
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                         type="text"
