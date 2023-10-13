@@ -2,6 +2,7 @@ import { useState } from "react";
 import { React } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import "./signup-view.scss";
 
 
 export const SignupView = () => {
@@ -41,7 +42,7 @@ export const SignupView = () => {
     
       return (
       <Form onSubmit = {handleSubmit}>
-        <Form.Group controlId="formUserName">
+        <Form.Group className="form-group-entry" controlId="formUserName">
           <Form.Label>Username:</Form.Label>
           <Form.Control
             type="text"
