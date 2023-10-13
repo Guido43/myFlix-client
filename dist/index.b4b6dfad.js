@@ -44154,7 +44154,7 @@ const SearchForm = ({ onSearch })=>{
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.FormControl), {
-            className: "mr-sm-2",
+            className: "mb-sm-2",
             id: "search-bar",
             type: "text",
             placeholder: "Search movies by title...",
