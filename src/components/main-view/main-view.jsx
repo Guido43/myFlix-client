@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { ProfileView } from "../profile-view/profile-view";
+import { SearchForm } from "../search-form/search-form";
 import { useEffect } from "react";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
@@ -10,6 +11,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PropTypes from 'prop-types'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import './main-view.scss'
 
 
 export const MainView = () => {
@@ -27,6 +29,15 @@ export const MainView = () => {
         setToken(null);
         localStorage.clear();
   }
+
+  //filtering movies in search bar
+  const handleSearch = (searchName) => {
+  const filteredMovies = movies.filter((movie) =>
+        movie.Title.toLowerCase().includes(searchName.toLowerCase())
+        );
+        setMovies(filteredMovies);
+  };
+
 
   useEffect(() => {
     if (!token) 
@@ -69,7 +80,7 @@ export const MainView = () => {
          localStorage.clear();
       }}
       />
-    <Row className="justify-content-md-center">
+    <Row className="cards-container">
       <Routes>
         
         
@@ -126,13 +137,18 @@ export const MainView = () => {
                   <Col>This list is Empty!</Col>
                 ) : (
                   <>
+                  <Row>
+                    <Col>
+                            <SearchForm onSearch={handleSearch} />
+                    </Col>
+                  </Row>
                   {movies.map((movie) => (
-                    <Col className="mb-5 d-flex" key={movie.Title} md={4}>
+                    <Col className="mb-3" key={movie.Title} md={4}>
                     <MovieCard movie={movie} 
                               user={user} 
                               token={token} 
                               setuser={setUser} />
-                  </Col>
+                    </Col>
                   ))}
 
                   <button
