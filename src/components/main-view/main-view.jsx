@@ -23,6 +23,7 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   
   
+  
   //const [selectedMovie, setSelectedMovie] = useState(null);
   const onLogout = () => {
         setUser(null);
@@ -42,6 +43,7 @@ export const MainView = () => {
   useEffect(() => {
     if (!token) 
       return;
+
     
     fetch("https://guysflix-d8285acb1f18.herokuapp.com/movies", {
       headers: {Authorization: `Bearer ${token}` } 
@@ -65,6 +67,7 @@ export const MainView = () => {
           };
         });
         setMovies(moviesFromApi);
+        
       });
   }, [token]);
 
