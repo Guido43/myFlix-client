@@ -21,6 +21,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser? storedUser: null);
   const [token, setToken] = useState(storedToken? storedToken: null);
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]); 
   
   
   
@@ -33,10 +34,15 @@ export const MainView = () => {
 
   //filtering movies in search bar
   const handleSearch = (searchName) => {
+    if (searchName === '') {setFilteredMovies(movies);
+    return;
+  }
+
+    
   const filteredMovies = movies.filter((movie) =>
         movie.Title.toLowerCase().includes(searchName.toLowerCase())
         );
-        setMovies(filteredMovies);
+        setFilteredMovies(filteredMovies);
   };
 
 
@@ -67,7 +73,7 @@ export const MainView = () => {
           };
         });
         setMovies(moviesFromApi);
-        
+        setFilteredMovies(moviesFromApi);
       });
   }, [token]);
 
@@ -136,8 +142,6 @@ export const MainView = () => {
                 <>
                 {!user ? (
                   <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>This list is Empty!</Col>
                 ) : (
                   <>
                   <Row>
@@ -145,7 +149,12 @@ export const MainView = () => {
                             <SearchForm onSearch={handleSearch} />
                     </Col>
                   </Row>
-                  {movies.map((movie) => (
+                  
+                  {filteredMovies.length === 0 ? <></>
+                  
+                 : (
+                  <>
+                  {filteredMovies.map((movie) => (
                     <Col className="mb-3" key={movie.Title} md={4}>
                     <MovieCard movie={movie} 
                               user={user} 
@@ -161,7 +170,8 @@ export const MainView = () => {
                   </>
                 )}
                 </>
-              }
+  )}
+  
               />
 
 
