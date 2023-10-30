@@ -171,7 +171,8 @@ export const MainView = () => {
                 )}
                 </>
   )}
-  
+  </>
+  }
               />
 
 

@@ -27305,8 +27305,6 @@ const MainView = ()=>{
                                 children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
                                     to: "/login",
                                     replace: true
-                                }, void 0, false, void 0, void 0) : filteredMovies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                    children: "This list is Empty!"
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                     children: [
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27316,21 +27314,25 @@ const MainView = ()=>{
                                                 }, void 0, false, void 0, void 0)
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, void 0, void 0),
-                                        filteredMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                                className: "mb-3",
-                                                md: 4,
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                                    movie: movie,
-                                                    user: user,
-                                                    token: token,
-                                                    setuser: setUser
+                                        filteredMovies.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                            children: [
+                                                filteredMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                                        className: "mb-3",
+                                                        md: 4,
+                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                                            movie: movie,
+                                                            user: user,
+                                                            token: token,
+                                                            setuser: setUser
+                                                        }, void 0, false, void 0, void 0)
+                                                    }, movie.Title, false, void 0, void 0)),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                                    variant: "secondary",
+                                                    onClick: onLogout,
+                                                    children: "LogOut"
                                                 }, void 0, false, void 0, void 0)
-                                            }, movie.Title, false, void 0, void 0)),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                                            variant: "secondary",
-                                            onClick: onLogout,
-                                            children: "LogOut"
-                                        }, void 0, false, void 0, void 0)
+                                            ]
+                                        }, void 0, true)
                                     ]
                                 }, void 0, true)
                             }, void 0, false)
@@ -27357,7 +27359,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 175,
+                            lineNumber: 180,
                             columnNumber: 15
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27379,7 +27381,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 197,
+                            lineNumber: 202,
                             columnNumber: 11
                         }, undefined)
                     ]
