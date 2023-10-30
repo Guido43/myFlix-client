@@ -9,11 +9,11 @@ export const SearchForm = ({ onSearch }) => {
         const newSearchName = e.target.value;
         setSearchName(newSearchName);
 
-            if (newSearchName === '') {
+        if (newSearchName === '') {
             onSearch('');
-            } else {
-                onSearch(newSearchName);
-            }
+        } else {
+            onSearch(newSearchName);
+        }
     };
 
     return (
@@ -25,7 +25,7 @@ export const SearchForm = ({ onSearch }) => {
                 placeholder="Search movies by title..."
                 value={searchName}
                 onChange={handleSearchItem}
-                />
+            />
         </Form>
     );
 }

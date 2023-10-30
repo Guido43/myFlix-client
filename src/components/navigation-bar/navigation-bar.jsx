@@ -13,28 +13,28 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             {!user && (
-                <>
+              <>
                 <Nav.Link as={Link} to="/login">
-                    Login
+                  Login
                 </Nav.Link>
                 <Nav.Link as={Link} to="/signup">
-                    Signup
+                  Signup
                 </Nav.Link>
-                </>
+              </>
             )}
 
             {user && (
-                <>
+              <>
                 <Nav.Link as={Link} to="/">
-                    Home
+                  Home
                 </Nav.Link>
                 <Nav.Link onClick={onLoggedOut}>
-                    Logout
+                  Logout
                 </Nav.Link>
                 <Nav.Link as={Link} to="/profile">
-                    My Profile
+                  My Profile
                 </Nav.Link>
-                </>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

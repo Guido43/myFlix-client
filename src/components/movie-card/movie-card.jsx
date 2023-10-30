@@ -15,12 +15,12 @@ export const MovieCard = ({ movie, user, setUser, token, imagePath }) => {
         <Card.Text>{movie.Description}</Card.Text>
 
         <Link to={`/movies/${encodeURIComponent(movie._id)}`} state={{ user: user }}>
-        <Button variant="link">more information</Button>
+          <Button variant="link">more information</Button>
         </Link>
       </Card.Body>
-      </Card>
-    
-    
+    </Card>
+
+
   );
 };
 MovieCard.PropTypes = {
@@ -28,5 +28,5 @@ MovieCard.PropTypes = {
     Title: PropTypes.string.isRequired,
     imagePath: PropTypes.string.isRequired,
   }).isRequired,
-  
+
 };

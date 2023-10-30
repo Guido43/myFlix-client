@@ -8,17 +8,17 @@ import "./movie-view.scss";
 
 export const MovieView = ({ movies, setUser, user, token }) => {
   //console.log("userParams is", useParams());
-  const {movieview: movieId} = useParams();
-  
+  const { movieview: movieId } = useParams();
+
   console.log("user is", user);
   const [isFavorite, setIsFavorite] = useState(user.favoritemovies.includes(movieId));
 
   //useEffect(() => {
-    //const isFavoriteMovie = user.favoritemovies.includes(movie._id)
-    //setIsFavorite(isFavoriteMovie)
+  //const isFavoriteMovie = user.favoritemovies.includes(movie._id)
+  //setIsFavorite(isFavoriteMovie)
   //}, []);
 
-  
+
   const addFavoriteMovie = () => {
     fetch(`https://guysflix-d8285acb1f18.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
       method: "POST",
@@ -29,15 +29,16 @@ export const MovieView = ({ movies, setUser, user, token }) => {
     }).then((response) => {
       if (response.ok) {
         return response.json();
-      } else {alert ('Failed');
+      } else {
+        alert('Failed');
         return false;
       }
     }).then((user) => {
       if (user) {
         alert('Movie added to favorites');
-      localStorage.setItem("user", JSON.stringify(user));
-      setUser(user);
-      setIsFavorite(true);
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
+        setIsFavorite(true);
       }
     })
   };
@@ -61,14 +62,14 @@ export const MovieView = ({ movies, setUser, user, token }) => {
       .then((user) => {
         if (user) {
           alert('Movie deleted from favorites');
-      localStorage.setItem("user", JSON.stringify(user));
-      setUser(user);
-      setIsFavorite(false);
+          localStorage.setItem("user", JSON.stringify(user));
+          setUser(user);
+          setIsFavorite(false);
         }
-    })
-    .catch((e) => {
-      alert(e);
-    });
+      })
+      .catch((e) => {
+        alert(e);
+      });
   };
 
 
@@ -77,7 +78,7 @@ export const MovieView = ({ movies, setUser, user, token }) => {
   const movie = movies.find((m) => m._id === movieId)
   console.log(movie);
   console.log(setIsFavorite);
-  
+
   return (
     <div>
       <div>
@@ -87,31 +88,31 @@ export const MovieView = ({ movies, setUser, user, token }) => {
       <div>
         <span>Image: </span>
         <img src={movie.imagePath}>
-          </img>
+        </img>
       </div>
       <div>
         <span>Description</span>
         <span>{movie.Description}</span>
-        </div>
+      </div>
       <div>
         <span>Director: </span>
         <span>{movie.Director.Name}</span>
       </div>
       <div>
-          <span>Genre: </span>
-          <span>{movie.Genre.Name}</span>
+        <span>Genre: </span>
+        <span>{movie.Genre.Name}</span>
       </div>
 
       {isFavorite ? (
-                <Button onClick={removeFavoriteMovie}>Remove from favorites</Button>
-            ) : (
-                <Button onClick={addFavoriteMovie}>Add to favorites</Button>
-            )}
+        <Button onClick={removeFavoriteMovie}>Remove from favorites</Button>
+      ) : (
+        <Button onClick={addFavoriteMovie}>Add to favorites</Button>
+      )}
 
 
 
       <Link to={"/"}>
-      <button  type="link" className="back-button" style={{cursor: "pointer"}}>Back</button>
+        <button type="link" className="back-button" style={{ cursor: "pointer" }}>Back</button>
       </Link>
     </div>
   );
